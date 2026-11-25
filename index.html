@@ -1,0 +1,387 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gate Pass Management System">
+    <title>GatePass | Visitor Management</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">G</div>
+                <div>
+                    <h2>GatePass</h2>
+                    <span>Visitor Management</span>
+                </div>
+            </div>
+
+            <div class="sidebar-label">MENU</div>
+
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-link">
+                    <span class="nav-icon">⌂</span>
+                    Dashboard
+                </a>
+                <a href="#registration" class="nav-link">
+                    <span class="nav-icon">＋</span>
+                    Register Visitor
+                </a>
+                <a href="#visitorRecords" class="nav-link">
+                    <span class="nav-icon">▤</span>
+                    Visitor Records
+                </a>
+                <a href="#visitorReports" class="nav-link">
+                    <span class="nav-icon">▥</span>
+                    Reports
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="sidebar-footer-icon">✓</div>
+                <div>
+                    <strong>GatePass System</strong>
+                    <span>Management Portal</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="topbar">
+                <div>
+                    <p class="breadcrumb">Workspace / Dashboard</p>
+                    <h1>Dashboard</h1>
+                </div>
+                <div class="topbar-right">
+                    <span class="system-status">
+                        <span class="status-dot"></span>
+                        System Active
+                    </span>
+                    <div class="profile-avatar">A</div>
+                </div>
+            </header>
+
+            <!-- Dashboard -->
+            <section id="dashboard" class="dashboard-section">
+                <div class="welcome-section">
+                    <div>
+                        <h2>Welcome back!</h2>
+                        <p>Here's what's happening with your visitors today.</p>
+                    </div>
+                    <a href="#registration" class="primary-button">
+                        <span>＋</span> Register Visitor
+                    </a>
+                </div>
+
+                <!-- Statistics -->
+                <div class="stats-grid">
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Total Visitors</span>
+                            <div class="stat-icon blue">♙</div>
+                        </div>
+                        <h3 id="totalVisitors">0</h3>
+                        <p>All registered visits</p>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Currently Inside</span>
+                            <div class="stat-icon green">↗</div>
+                        </div>
+                        <h3 id="insideVisitors">0</h3>
+                        <p>Visitors on premises</p>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Checked Out</span>
+                            <div class="stat-icon orange">✓</div>
+                        </div>
+                        <h3 id="checkedOutVisitors">0</h3>
+                        <p>Completed visits</p>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Today's Visitors</span>
+                            <div class="stat-icon purple">▦</div>
+                        </div>
+                        <h3 id="todayVisitors">0</h3>
+                        <p>Visits registered today</p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Visitor Registration -->
+            <section id="registration" class="content-card">
+                <div class="section-heading">
+                    <div>
+                        <h2>Register New Visitor</h2>
+                        <p>Enter the visitor's information below.</p>
+                    </div>
+                </div>
+
+                <form id="visitorForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="visitorName">Visitor Name <span>*</span></label>
+                            <input type="text" id="visitorName" placeholder="Enter visitor name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="visitorPhone">Phone Number <span>*</span></label>
+                            <input type="tel" id="visitorPhone" placeholder="Enter phone number" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="visitorEmail">Email Address</label>
+                            <input type="email" id="visitorEmail" placeholder="Enter email address">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="visitorCompany">Company</label>
+                            <input type="text" id="visitorCompany" placeholder="Enter company name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="personToMeet">Person to Meet <span>*</span></label>
+                            <input type="text" id="personToMeet" placeholder="Enter employee name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="visitorPurpose">Visit Purpose <span>*</span></label>
+                            <select id="visitorPurpose" required>
+                                <option value="">Select visit purpose</option>
+                                <option value="Business Meeting">Business Meeting</option>
+                                <option value="Interview">Interview</option>
+                                <option value="Project Discussion">Project Discussion</option>
+                                <option value="General Visit">General Visit</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="visitorPhoto">Visitor Photo</label>
+                            <input type="file" id="visitorPhoto" accept="image/*">
+                            <p class="field-hint">Upload a JPG, PNG or WEBP image. Maximum size: 5 MB.</p>
+                            <img id="photoPreview" class="photo-preview" alt="Visitor photo preview" hidden>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="reset" class="secondary-button">Clear Form</button>
+                        <button type="submit" class="primary-button">Register Visitor</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Edit Visitor -->
+            <section id="editVisitorSection" class="content-card" hidden>
+                <div class="section-heading">
+                    <div>
+                        <h2>Edit Visitor Details</h2>
+                        <p>Update the visitor's information.</p>
+                    </div>
+                </div>
+
+                <form id="editVisitorForm">
+                    <input type="hidden" id="editVisitorId">
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="editVisitorName">Visitor Name</label>
+                            <input type="text" id="editVisitorName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editVisitorPhone">Phone Number</label>
+                            <input type="tel" id="editVisitorPhone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editVisitorEmail">Email Address</label>
+                            <input type="email" id="editVisitorEmail">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editVisitorCompany">Company</label>
+                            <input type="text" id="editVisitorCompany">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editPersonToMeet">Person to Meet</label>
+                            <input type="text" id="editPersonToMeet" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editVisitorPurpose">Visit Purpose</label>
+                            <select id="editVisitorPurpose" required>
+                                <option value="">Select visit purpose</option>
+                                <option value="Business Meeting">Business Meeting</option>
+                                <option value="Interview">Interview</option>
+                                <option value="Project Discussion">Project Discussion</option>
+                                <option value="General Visit">General Visit</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="editVisitorPhoto">Update Visitor Photo</label>
+                            <input type="file" id="editVisitorPhoto" accept="image/*">
+                            <img id="editPhotoPreview" class="photo-preview" alt="Updated visitor photo preview" hidden>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" id="cancelEditButton" class="secondary-button">Cancel</button>
+                        <button type="submit" id="updateVisitorButton" class="primary-button">Update Visitor</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Visitor Records -->
+            <section id="visitorRecords" class="content-card">
+                <div class="section-heading">
+                    <div>
+                        <h2>Visitor Records</h2>
+                        <p>Manage and monitor all visitor entries.</p>
+                    </div>
+                </div>
+
+                <div class="table-toolbar">
+                    <div class="search-box">
+                        <span>⌕</span>
+                        <input type="search" id="visitorSearch" placeholder="Search visitors...">
+                    </div>
+
+                    <select id="statusFilter" class="filter-select">
+                        <option value="all">All Status</option>
+                        <option value="Inside">Inside</option>
+                        <option value="Checked Out">Checked Out</option>
+                    </select>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Visitor</th>
+                                <th>Phone</th>
+                                <th>Person to Meet</th>
+                                <th>Purpose</th>
+                                <th>Visit Date</th>
+                                <th>Check-In</th>
+                                <th>Check-Out</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="visitorTableBody"></tbody>
+                    </table>
+                </div>
+
+                <p id="emptyMessage" class="empty-message" hidden>No visitors found.</p>
+            </section>
+
+            <!-- Visitor Reports -->
+            <section id="visitorReports" class="content-card">
+                <div class="section-heading">
+                    <div>
+                        <h2>Visitor Reports</h2>
+                        <p>View visitor activity by day, month or year.</p>
+                    </div>
+                </div>
+
+                <div class="report-filter-grid">
+                    <div class="report-filter">
+                        <label for="dailyReportDate">Daily Report</label>
+                        <input type="date" id="dailyReportDate">
+                        <button type="button" id="dailyReportButton" class="secondary-button">Generate Report</button>
+                    </div>
+
+                    <div class="report-filter">
+                        <label for="monthlyReportDate">Monthly Report</label>
+                        <input type="month" id="monthlyReportDate">
+                        <button type="button" id="monthlyReportButton" class="secondary-button">Generate Report</button>
+                    </div>
+
+                    <div class="report-filter">
+                        <label for="yearlyReportDate">Yearly Report</label>
+                        <input type="number" id="yearlyReportDate" min="2000" max="2100" placeholder="Enter year">
+                        <button type="button" id="yearlyReportButton" class="secondary-button">Generate Report</button>
+                    </div>
+                </div>
+
+                <div id="reportResults" class="report-results" hidden>
+                    <div class="section-heading">
+                        <div>
+                            <h3 id="reportTitle">Report Results</h3>
+                            <p>Summary of visitors for the selected period.</p>
+                        </div>
+                    </div>
+
+                    <div class="report-summary">
+                        <div class="report-stat">
+                            <span>Total Visitors</span>
+                            <strong id="reportTotalVisitors">0</strong>
+                        </div>
+                        <div class="report-stat">
+                            <span>Currently Inside</span>
+                            <strong id="reportInsideVisitors">0</strong>
+                        </div>
+                        <div class="report-stat">
+                            <span>Checked Out</span>
+                            <strong id="reportCheckedOutVisitors">0</strong>
+                        </div>
+                    </div>
+
+                    <h3 class="subsection-title">Purpose-wise Statistics</h3>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Purpose</th>
+                                    <th>Visitor Count</th>
+                                </tr>
+                            </thead>
+                            <tbody id="purposeReportBody"></tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="subsection-title">Visitor Details</h3>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Visitor Name</th>
+                                    <th>Company</th>
+                                    <th>Purpose</th>
+                                    <th>Visit Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reportVisitorTableBody"></tbody>
+                        </table>
+                    </div>
+
+                    <p id="reportEmptyMessage" class="empty-message" hidden>No visitors found for this period.</p>
+                </div>
+            </section>
+
+            <footer class="page-footer">
+                <p>GatePass Visitor Management System</p>
+                <span>© 2026 All rights reserved.</span>
+            </footer>
+        </main>
+    </div>
+
+    <script type="module" src="./js/main.js"></script>
+</body>
+</html>
